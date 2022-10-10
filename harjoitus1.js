@@ -1,14 +1,13 @@
-// HARJOITUS 1
+// JavaScript-ohjelmointi I (perusrakenteet)
+
 
 // Tehtävä 1.3
 const vertaa = (luku) => {
     if (luku > 100) {
         return "syötit luvun, joka on suurempi kuin 100";
-    }
-    else if (luku < 100) {
+    } else if (luku < 100) {
         return "syötit luvun, joka on pienempi kuin 100";
-    }
-    else {
+    } else {
         return "luku on 100";
     }
 };
@@ -68,14 +67,11 @@ const viikonpv = (nro) => {
 const ikaryhma = (ika) => {
     if (ika >= 1 && ika <= 17) {
         return "olet alaikäinen";
-    }
-    else if (ika >= 18 && ika <= 33) {
+    } else if (ika >= 18 && ika <= 33) {
         return "olet nuori";
-    }
-    else if (ika >= 34 && ika <= 50) {
+    } else if (ika >= 34 && ika <= 50) {
         return "olet keski-ikäinen";
-    }
-    else {
+    } else {
         return "olet vanha";
     }
 };
@@ -166,7 +162,7 @@ const parilliset = () => {
     const par = [];
     for (let i = 0; i <= 100; i++) {
         if (i % 2 === 0) {
-            par.push(i)
+            par.push(i);
         }
     }
     return par;
@@ -199,8 +195,7 @@ const painoindeksi = (paino, pituus) => {
 const karkausvuosi = (vuosi) => {
     if ((vuosi % 4 === 0 && vuosi % 100 !== 0) || vuosi % 400 === 0) {
         return "on";
-    }
-    else {
+    } else {
         return "ei";
     }
 };
@@ -217,28 +212,27 @@ const eiYksi = (luku) => {
 
 //console.log(eiYksi(3));
 
+
 // Tehtävä 1.19
 const muunnos = (asteikko, lukema) => {
     if (asteikko === 'C' || asteikko === 'c' || asteikko === 'F' || asteikko === 'f') {
         if (lukema <= 100 && lukema > -101) {
             if (asteikko === 'C' || asteikko === 'c') {
-                lukema = 9/5 * lukema + 32;
-            }
-            else {
-                lukema = 5/9 * (lukema - 32)
+                lukema = 9 / 5 * lukema + 32;
+            } else {
+                lukema = 5 / 9 * (lukema - 32);
             }
             return lukema;
+        } else {
+            return "lukema virheellinen";
         }
-        else {
-            return "lukema virheellinen"
-        }
+    } else {
+        return "asteikko tuntematon";
     }
-    else {
-        return "asteikko tuntematon"
-    }
-}
+};
 
 //console.log(muunnos('C', 100))
+
 
 // Tehtävä 1.20
 const kulutus = (litrat, kilometrit) => {
@@ -246,26 +240,23 @@ const kulutus = (litrat, kilometrit) => {
         if (kilometrit > 0) {
             let sadalla = litrat * 100 / kilometrit;
             return sadalla;
+        } else {
+            return "virhesyöttö"; 
         }
-        else {
-            return "virhesyöttö";
-        }
-    }
-    else {
+    } else {
         return "virhesyöttö";
     }
-}
+};
 
 
 // Tehtävä 1.21
 const henkilo = (nimi) => {
     if (nimi === 'Pekka' || nimi === 'Liisa' || nimi === 'Jorma') {
         return `Minunkin mielestäni ${nimi} on kiva`;
-    }
-    else {
+    } else {
         return "En tunne henkilöä";
     }
-}
+};
 
 //console.log(henkilo("Pekka"));
 
@@ -278,9 +269,10 @@ const henkilo2 = (nimi) => {
         case 'Liisa':
             return "Minunkin mielestäni Jorma on kiva";
     }
-}
+};
 
 //console.log(henkilo("Pekka"));
+
 
 // Tehtävä 1.22
 
@@ -293,9 +285,41 @@ e) epätosi
 f) tosi
 */
 
+
 // Tehtävä 1.23
 
+// toteutus olettaen, että elementit kuljetetaan suuruusjärjestyksessä
 const ajokerrat = () => {
+    let n = 0;
+    let pituus = 0.3;
+    let leveys = 0.5;
+    let korkeus = 0.5;
+    let yhdenPaino = 2500 * pituus * leveys * korkeus;
+    let paino = yhdenPaino;
+    for (let i = 1; i < 50; i++) {
+        pituus *= 1.02;
+        leveys *= 1.03;
+        korkeus *= 1.015;
+        yhdenPaino = 2500 * pituus * leveys * korkeus;
+        //console.log(paino, yhdenPaino);
+        if (paino + yhdenPaino > 10500) {
+            n++;
+            paino = yhdenPaino;
+        } else {
+            paino += yhdenPaino;
+        }
+        if (i === 49) {
+            n++;
+        }
+    }
+    return n;
+};
+
+console.log(ajokerrat());
+// vastaus 8 kertaa
+
+// seuraava toteutus antaa vain arvion ajokerroille
+const ajokerrat2 = () => {
     let pituus = 0.3;
     let leveys = 0.5;
     let korkeus = 0.5;
@@ -307,7 +331,7 @@ const ajokerrat = () => {
         tilavuusYht += pituus * leveys * korkeus;
     }
     return Math.ceil(2500 * tilavuusYht / 10500);
-}
+};
 
-//console.log(ajokerrat());
-// 7 kertaa
+//console.log(ajokerrat2());
+//antaa arvion 7
