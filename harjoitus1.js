@@ -80,7 +80,6 @@ const ikaryhma = (ika) => {
 
 
 // Tehtävä 1.7
-
 const terve = (etunimi, sukunimi, ika) => {
     //return "Terve " + etunimi + " " + sukunimi + ", olet " + ika + " vuotias";
     return `Terve ${etunimi} ${sukunimi}, olet ${ika} vuotias`;
@@ -290,26 +289,22 @@ f) tosi
 
 // toteutus olettaen, että elementit kuljetetaan suuruusjärjestyksessä
 const ajokerrat = () => {
-    let n = 0;
+    let n = 1;
     let pituus = 0.3;
     let leveys = 0.5;
     let korkeus = 0.5;
-    let yhdenPaino = 2500 * pituus * leveys * korkeus;
-    let paino = yhdenPaino;
+    let elementinPaino = 2500 * pituus * leveys * korkeus;
+    let paino = elementinPaino;
     for (let i = 1; i < 50; i++) {
         pituus *= 1.02;
         leveys *= 1.03;
         korkeus *= 1.015;
-        yhdenPaino = 2500 * pituus * leveys * korkeus;
-        //console.log(paino, yhdenPaino);
-        if (paino + yhdenPaino > 10500) {
+        elementinPaino = 2500 * pituus * leveys * korkeus;
+        if (paino + elementinPaino > 10500) {
             n++;
-            paino = yhdenPaino;
+            paino = elementinPaino;
         } else {
-            paino += yhdenPaino;
-        }
-        if (i === 49) {
-            n++;
+            paino += elementinPaino;
         }
     }
     return n;
